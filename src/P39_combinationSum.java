@@ -2,7 +2,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class P38_combinationSum {
+public class P39_combinationSum {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         int len = candidates.length;
         List<List<Integer>> res  = new ArrayList();
