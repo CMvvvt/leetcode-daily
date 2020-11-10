@@ -24,3 +24,20 @@ var inorderTraversal = function(root) {
     inOrder(root);
     return result;
 };
+
+// method 2 使用栈方法；
+// 把中序递归的问题理解成栈，向左迭代(入栈)直到没有左子节点(出栈)
+var inorderTraversal1 = function(root) {
+    let result = [];
+    let stack = [];
+    while(root || stack.length) {
+        while(root) {
+            stack.push(root);
+            root = root.left
+        }
+        root = stack.pop();
+        result.push(root.val);
+        root = root.right;
+    }
+    return result;
+};
