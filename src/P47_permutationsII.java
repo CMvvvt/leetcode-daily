@@ -25,6 +25,7 @@ public class P47_permutationsII {
             }
             if(used[i]) {
                 continue;
+                ;
             }
             used[i] = true;
             path.add(nums[i]);
