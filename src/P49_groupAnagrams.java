@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class P_groupAnagrams {
+public class P49_groupAnagrams {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<String, List<String>>();
         for (String str : strs) {
