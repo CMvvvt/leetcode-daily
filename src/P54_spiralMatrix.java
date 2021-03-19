@@ -30,4 +30,34 @@ public class P54_spiralMatrix {
             return list;
         }
     }
+//      method 2
+//    class Solution {
+//        public List<Integer> spiralOrder(int[][] matrix) {
+//            List<Integer> res = new ArrayList<Integer>();
+//            if(matrix == null || matrix.length == 0){
+//                return res;
+//            }
+//            int m = matrix.length;
+//            int n = matrix[0].length;
+//            int[] dx = {0, 1, 0, -1};
+//            int[] dy = {1, 0, -1, 0};
+//            int x = 0;
+//            int y = 0;
+//            int d = 0;
+//            for(int i = 0; i < m*n; i++){
+//                res.add(matrix[x][y]);
+//                matrix[x][y] = 1000;
+//                int tempX = x + dx[d];
+//                int tempY = y + dy[d];
+//                if(tempX < 0 || tempX >= m || tempY < 0 || tempY >= n || matrix[tempX][tempY] == 1000) {
+//                    d = (d + 1) % 4;
+//                    tempX = x + dx[d];
+//                    tempY = y + dy[d];
+//                }
+//                x = tempX;
+//                y = tempY;
+//            }
+//            return res;
+//        }
+//    }
 }
