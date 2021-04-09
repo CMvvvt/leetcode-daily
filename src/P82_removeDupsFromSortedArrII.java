@@ -9,7 +9,7 @@ public class P82_removeDupsFromSortedArrII {
      *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      * }
      */
-    class Solution {
+    class Solution1 {
         public ListNode deleteDuplicates(ListNode head) {
             if(head == null) return null;
             ListNode p = new ListNode(0, head);
@@ -25,6 +25,33 @@ public class P82_removeDupsFromSortedArrII {
                 }
             }
             return p.next;
+        }
+    }
+
+//    递归解法
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution2 {
+        public ListNode deleteDuplicates(ListNode head) {
+            if(head == null || head.next == null) return head;
+            if(head.val != head.next.val) {
+                head.next = deleteDuplicates(head.next);
+            } else {
+                ListNode end = head;
+                while(end != null && end.val == head.val) {
+                    end = end.next;
+                }
+                return deleteDuplicates(end);
+            }
+            return head;
         }
     }
 }
