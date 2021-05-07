@@ -16,4 +16,21 @@ public class P119_pascalTriangleII {
             return pre;
         }
     }
+
+    class Solution2 {
+        public List<Integer> getRow(int rowIndex) {
+            List<Integer> res = new ArrayList<>();
+            res.add(1);
+            for(int i = 0; i <= rowIndex; i++) {
+                for(int j = i; j > 0; j--) {
+                    if(j == i)  {
+                        res.add(1);
+                    } else {
+                        res.set(j, res.get(j) + res.get(j-1));
+                    }
+                }
+            }
+            return res;
+        }
+    }
 }
