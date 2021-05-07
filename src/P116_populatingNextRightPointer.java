@@ -43,4 +43,25 @@ class Node {
             return root;
         }
     }
+
+
+
+    class Solution2 {
+        public Node connect(Node root) {
+            if(root == null) return root;
+            Node left = root;
+            while(left.left != null) {
+                Node head = left;
+                while(head != null) {
+                    head.left.next = head.right;
+                    if(head.next != null) {
+                        head.right.next = head.next.left;
+                    }
+                    head = head.next;
+                }
+                left = left.left;
+            }
+            return root;
+        }
+    }
 }
