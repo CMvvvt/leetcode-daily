@@ -26,4 +26,26 @@ public class P151_reverseStringInWord {、class Solution {
         return str.toString();
     }
 }
+
+    class Solution2 {
+        public String reverseWords(String s) {
+            StringBuilder res = new StringBuilder();
+            String str = s.replaceAll(" +", " ");
+            str = str.trim();
+            int len = str.length();
+            int space = 0;
+            for(int i = 0; i < len; i++) {
+                char ch = str.charAt(i);
+                if(ch == ' ') {
+                    res.insert(0, str.substring(space, i));
+                    if(space == 0) res.insert(0, " ");
+                    space = i;
+                } else if(i == len-1) {
+                    res.insert(0, str.substring(space));
+                }
+            }
+            String ans = res.toString();
+            return ans.trim();
+        }
+    }
 }
