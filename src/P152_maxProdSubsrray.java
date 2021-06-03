@@ -19,4 +19,17 @@ public class P152_maxProdSubsrray {
             return res;
         }
     }
+    class Solution {
+        public int maxProduct(int[] nums) {
+            int len = nums.length;
+            int res = nums[0], max = nums[0], min = nums[0];
+            for(int i = 1; i < len; i++) {
+                int temp = max;
+                max = Math.max(Math.max(max * nums[i], min * nums[i]), nums[i]);
+                min = Math.min(Math.min(temp * nums[i], min * nums[i]), nums[i]);
+                res = Math.max(res, max);
+            }
+            return res;
+        }
+    }
 }
