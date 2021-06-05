@@ -11,4 +11,20 @@ public class P167_twoSumII {
             return new int[]{0,0};
         }
     }
+    class Solution2 {
+        public int[] twoSum(int[] numbers, int target) {
+            int n = numbers.length;
+            for(int i = 0; i < n-1; i++) {
+                int val1 = numbers[i];
+                for(int j = i+1; j < n; j++) {
+                    int val2 = numbers[j];
+                    if(val1 + val2 > target) break;
+                    if(val1 + val2 == target) {
+                        return new int[]{i+1, j+1};
+                    }
+                }
+            }
+            return new int[]{1,1};
+        }
+    }
 }
