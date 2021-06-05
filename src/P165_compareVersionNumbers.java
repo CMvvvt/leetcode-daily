@@ -46,4 +46,37 @@ public class P165_compareVersionNumbers {
             return 0;
         }
     }
+
+    class Solution3 {
+        public int compareVersion(String version1, String version2) {
+            int n1 = version1.length(), n2 = version2.length();
+            int p = 0, q = 0;
+            int value1, value2;
+            Pair<Integer, Integer> pair;
+            while(p < n1 || q < n2) {
+                pair = getPair(version1, n1, p);
+                value1 = pair.getKey();
+                p = pair.getValue();
+
+                pair = getPair(version2, n2, q);
+                value2 = pair.getKey();
+                q = pair.getValue();
+
+                if(value1 !=  value2) return value1 > value2 ? 1: -1;
+            }
+            return 0;
+        }
+
+        private Pair<Integer, Integer> getPair(String version, int n, int start) {
+            if(start > n-1) {
+                return new Pair(0, n);
+            }
+            int end = start;
+            while(end < n && version.charAt(end) != '.' ) {
+                end++;
+            }
+            int value = end != n ? Integer.parseInt(version.substring(start, end)): Integer.parseInt(version.substring(start));
+            return new Pair(value, end+1);
+        }
+    }
 }
