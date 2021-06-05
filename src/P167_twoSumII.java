@@ -48,4 +48,21 @@ public class P167_twoSumII {
             return new int[]{-1, -1};
         }
     }
+
+    class Solution4 {
+        public int[] twoSum(int[] numbers, int target) {
+            int n = numbers.length;
+            int low = 0, high = n-1;
+            while(low <= high) {
+                int val1 = numbers[low], val2 = numbers[high];
+                if(val1 + val2 == target) return new int[]{low+1, high+1};
+                if(val1 + val2 > target) {
+                    high--;
+                    continue;
+                }
+                low++;
+            }
+            return new int[]{-1, -1};
+        }
+    }
 }
