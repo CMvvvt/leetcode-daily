@@ -24,4 +24,12 @@ public class P203_removeLinkedListElement {
             return head;
         }
     }
+
+    class Solution2 {
+        public ListNode removeElements(ListNode head, int val) {
+            if(head == null) return head;
+            head.next = removeElements(head.next, val);
+            return head.val == val ? head.next : head;
+        }
+    }
 }
