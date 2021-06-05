@@ -28,4 +28,22 @@ public class P165_compareVersionNumbers {
             return 0;
         }
     }
+
+    /**
+     * Simplified code for method 1.
+     */
+    class Solution2{
+        public int compareVersion(String version1, String version2) {
+            String[] str1 = version1.split("\\.");
+            String[] str2 = version2.split("\\.");
+            int len1 = str1.length, len2 = str2.length;
+            int value1, value2;
+            for(int i = 0; i < Math.max(len1, len2); i++) {
+                value1 = len1 > i ? Integer.parseInt(str1[i]) : 0;
+                value2 = len2 > i ? Integer.parseInt(str2[i]) : 0;
+                if(value1 != value2) return value1 > value2 ? 1 : -1;
+            }
+            return 0;
+        }
+    }
 }
