@@ -27,4 +27,25 @@ public class P167_twoSumII {
             return new int[]{1,1};
         }
     }
+
+    class Solution3 {
+        public int[] twoSum(int[] numbers, int target) {
+            int n = numbers.length;
+            for(int i = 0; i < n; i++) {
+                int low = i+1, high = n-1;
+                while(low <= high) {
+                    int mid = (high + low) / 2;
+                    if(numbers[mid] + numbers[i] == target) {
+                        return new int[]{i+1, mid+1};
+                    }
+                    if(numbers[i] + numbers[mid] > target) {
+                        high = mid-1;
+                        continue;
+                    }
+                    low = mid+1;
+                }
+            }
+            return new int[]{-1, -1};
+        }
+    }
 }
