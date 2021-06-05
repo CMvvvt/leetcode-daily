@@ -12,4 +12,10 @@ public class P169_majorityElement {
             return -1;
         }
     }
+    class Solution2 {
+        public int majorityElement(int[] nums) {
+            Arrays.sort(nums);
+            return nums[nums.length/2];
+        }
+    }
 }
