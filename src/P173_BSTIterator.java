@@ -39,6 +39,30 @@ public class P173_BSTIterator {
         }
     }
 
+    class BSTIterator2 {
+        private TreeNode curr;
+        private Stack<TreeNode> stack;
+        public BSTIterator(TreeNode root) {
+            curr = root;
+            stack = new Stack();
+        }
+
+        public int next() {
+            while(curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            int value = curr.val;
+            curr = curr.right;
+            return value;
+        }
+
+        public boolean hasNext() {
+            return curr != null || !stack.isEmpty();
+        }
+    }
+
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator obj = new BSTIterator(root);
