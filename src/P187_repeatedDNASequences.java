@@ -19,4 +19,20 @@ public class P187_repeatedDNASequences {
             return res;
         }
     }
+    class Solution2 {
+        public List<String> findRepeatedDnaSequences(String s) {
+            int L = 10;
+            Set<String> seen = new HashSet<>(), output = new HashSet<>();
+
+            for(int i = 0; i < s.length() - L + 1; i++) {
+                String str = s.substring(i, i+10);
+                if(seen.contains(str)) {
+                    output.add(str);
+                } else {
+                    seen.add(str);
+                }
+            }
+            return new ArrayList<>(output);
+        }
+    }
 }
