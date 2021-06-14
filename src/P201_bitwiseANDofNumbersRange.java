@@ -13,7 +13,7 @@ public class P201_bitwiseANDofNumbersRange {
 
     /**
      * Brian Kernighan algorithm added.
-     * n & (n-1) would remove the last '1' of the integer, utill integer right <= integer left, then we have pre-string
+     * n & (n-1) would remove the last '1' of the integer, until integer right <= integer left, then we have pre-string
      * in common and all filled 0s at the right of integer right.
      */
     class Solution2 {
