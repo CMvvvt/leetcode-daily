@@ -10,4 +10,27 @@ public class P189_rotateArray {
             return;
         }
     }
+    class Solution {
+        public void rotate(int[] nums, int k) {
+            int n = nums.length;
+            k = k % n;
+            int count = gcd(n,k);
+            for(int i = 0; i < count; i++) {
+                int prev = nums[i];
+                int curr = i;
+                do {
+                    int next = (curr+k) % n;
+                    int temp = nums[next];
+                    nums[next] = prev;
+                    prev = temp;
+                    curr = next;
+                } while(curr != i);
+            }
+            return;
+        }
+
+        private int gcd(int x, int y) {
+            return y > 0 ? gcd(y, x % y) : x;
+        }
+    }
 }
