@@ -17,4 +17,20 @@ public class P283_moveZeroes {
             return;
         }
     }
+
+    class Solution2{
+        public void moveZeroes(int[] nums) {
+            int n = nums.length, left = 0, right = 0;
+            while(right < n) {
+                if(nums[right] != 0) {
+                    int temp = nums[right];
+                    nums[right] = nums[left];
+                    nums[left] = temp;
+                    left++;
+                }
+                right++;
+            }
+            return;
+        }
+    }
 }
