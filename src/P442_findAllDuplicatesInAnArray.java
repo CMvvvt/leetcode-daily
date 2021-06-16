@@ -13,4 +13,21 @@ public class P442_findAllDuplicatesInAnArray {
             return list;
         }
     }
+
+    class Solution2 {
+        public List<Integer> findDuplicates(int[] nums) {
+            int n = nums.length;
+            for(int num: nums) {
+                int x = (num-1) % n;
+                nums[x] += n;
+            }
+            List<Integer> list = new ArrayList<>();
+            for(int i = 0; i < n; i++) {
+                if(nums[i] > 2 * n) {
+                    list.add(i+1);
+                }
+            }
+            return list;
+        }
+    }
 }
