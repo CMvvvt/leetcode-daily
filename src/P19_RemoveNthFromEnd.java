@@ -59,4 +59,37 @@ public class P19_RemoveNthFromEnd {
     }
 
 
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     *
+     * REMOVE TWICE
+     */
+    class Solution {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode newHead = reverse(head);
+            ListNode dummyHead = new ListNode(-1, newHead);
+            ListNode dummy = dummyHead;
+            while(n > 1) {
+                dummy = dummy.next;
+                n--;
+            }
+            dummy.next = dummy.next.next;
+            return reverse(dummyHead.next);
+        }
+        private ListNode reverse(ListNode head) {
+            if(head == null || head.next == null) return head;
+            ListNode newHead = reverse(head.next);
+            head.next.next = head;
+            head.next = null;
+            return newHead;
+        }
+    }
+
 }
