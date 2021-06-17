@@ -92,4 +92,24 @@ public class P19_RemoveNthFromEnd {
         }
     }
 
+    /**
+     * double pointer method
+     *
+     */
+    class Solution4 {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummyHead = new ListNode(-1, head);
+            ListNode slow = dummyHead, fast = dummyHead;
+            while(n > 0) {
+                fast = fast.next;
+                n--;
+            }
+            while(fast.next != null) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            slow.next = slow.next.next;
+            return dummyHead.next;
+        }
+    }
 }
