@@ -54,4 +54,36 @@ public class P82_removeDupsFromSortedArrII {
             return head;
         }
     }
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode() {}
+     *     ListNode(int val) { this.val = val; }
+     *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution3 {
+        public ListNode deleteDuplicates(ListNode head) {
+            if(head == null || head.next == null) return head;
+            ListNode dummyHead = new ListNode(-1);
+            dummyHead.next = head;
+            ListNode dummy = dummyHead;
+            while(dummy.next != null && dummy.next.next != null) {
+                if(dummy.next.val != dummy.next.next.val) {
+                    dummy = dummy.next;
+                    continue;
+                }
+                ListNode start = dummy.next.next;
+                int val = start.val;
+                while(start != null && start.val == val) {
+                    start = start.next;
+                }
+                dummy.next = start;
+            }
+            return dummyHead.next;
+        }
+    }
 }
