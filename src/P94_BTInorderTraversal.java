@@ -1,4 +1,4 @@
-public class P95_BTInorderTraversal {
+public class P94_BTInorderTraversal {
     /**
      * Definition for a binary tree node.
      * public class TreeNode {
