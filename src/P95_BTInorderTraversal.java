@@ -33,4 +33,21 @@ public class P95_BTInorderTraversal {
             return list;
         }
     }
+
+    class Solution2 {
+        public List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            if(root == null) return list;
+            inOrder(root, list);
+            return list;
+        }
+
+        private void inOrder(TreeNode node, List<Integer> list) {
+            if(node == null) return;
+            inOrder(node.left, list);
+            list.add(node.val);
+            inOrder(node.right, list);
+            return;
+        }
+    }
 }
