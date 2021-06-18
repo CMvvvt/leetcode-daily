@@ -25,4 +25,26 @@ public class P142_linkedListCycleII {
             return null;
         }
     }
+
+    /**
+     * method 2 added
+     */
+    public class Solution2 {
+        public ListNode detectCycle(ListNode head) {
+            ListNode slow = head, fast = head;
+            while(true) {
+                if(fast == null || fast.next == null) return null;
+                fast = fast.next.next;
+                slow = slow.next;
+                if(slow == fast) {
+                    break;
+                }
+            }
+            while(head != slow) {
+                head = head.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+    }
 }
