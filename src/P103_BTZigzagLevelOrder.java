@@ -53,4 +53,35 @@ public class P103_BTZigzagLevelOrder {
             return res;
         }
     }
+
+    class Solution2 {
+        public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+            List<List<Integer>> res = new ArrayList<>();
+            if(root == null) return res;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            boolean isZigZag = true;
+            while(! queue.isEmpty()) {
+                Deque<Integer> level = new ArrayDeque<>();
+                int size = queue.size();
+                for(int i = 0; i < size; i++) {
+                    TreeNode node = queue.poll();
+                    if(isZigZag) {
+                        level.offerLast(node.val);
+                    } else {
+                        level.offerFirst(node.val);
+                    }
+                    if(node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if(node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+                isZigZag = !isZigZag;
+                res.add(new ArrayList(level));
+            }
+            return res;
+        }
+    }
 }
