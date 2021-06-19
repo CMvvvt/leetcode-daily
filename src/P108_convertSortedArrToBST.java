@@ -27,4 +27,22 @@ public class P108_convertSortedArrToBST {
             return root;
         }
     }
+
+
+    class Solution2 {
+        public TreeNode sortedArrayToBST(int[] nums) {
+            int n = nums.length - 1;
+            TreeNode root = binary(nums, 0, n);
+            return root;
+        }
+
+        private TreeNode binary(int[] nums, int left, int right) {
+            if(left > right) {return null;}
+            int mid = left + (right-left)/2;
+            TreeNode node = new TreeNode(nums[mid]);
+            node.left = binary(nums, left, mid-1);
+            node.right = binary(nums, mid+1, right);
+            return node;
+        }
+    }
 }
