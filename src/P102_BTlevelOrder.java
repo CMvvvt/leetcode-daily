@@ -14,6 +14,9 @@ public class P102_BTlevelOrder {
      *     }
      * }
      */
+    /**
+     * make sure the size
+     */
     class Solution {
         public List<List<Integer>> levelOrder(TreeNode root) {
             List<List<Integer>> res = new ArrayList<>();
