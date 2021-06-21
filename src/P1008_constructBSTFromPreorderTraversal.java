@@ -84,4 +84,29 @@ public class P1008_constructBSTFromPreorderTraversal {
             return node;
         }
     }
+
+    class Solution3 {
+        private int index = 0;
+        private int[] preorder;
+        private int len;
+
+        public TreeNode bstFromPreorder(int[] preorder) {
+            this.preorder = preorder;
+            this.len = preorder.length;
+            return dfs(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        }
+
+        private TreeNode dfs(int left, int right) {
+            if(index == len) return null;
+            int cur = preorder[index];
+            if(cur < left || cur > right) {
+                return null;
+            }
+            index++;
+            TreeNode node = new TreeNode(cur);
+            node.left = dfs(left, cur);
+            node.right = dfs(cur, right);
+            return node;
+        }
+    }
 }
