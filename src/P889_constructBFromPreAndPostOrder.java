@@ -33,4 +33,25 @@ public class P889_constructBFromPreAndPostOrder {
             return root;
         }
     }
+
+    class Solution2 {
+        public TreeNode constructFromPrePost(int[] pre, int[] post) {
+            int n = pre.length;
+            if(n == 0) return null;
+            TreeNode root = new TreeNode(pre[0]);
+            if(n == 1) return root;
+            int size = 0;
+            for(int i = 0; i < n; i++) {
+                if(post[i] == pre[1]) {
+                    size = i + 1;
+                    break;
+                }
+            }
+            root.left = constructFromPrePost(Arrays.copyOfRange(pre, 1, size + 1),
+                    Arrays.copyOfRange(post, 0, size));
+            root.right = constructFromPrePost(Arrays.copyOfRange(pre, size + 1, n),
+                    Arrays.copyOfRange(post, size, n-1));
+            return root;
+        }
+    }
 }
