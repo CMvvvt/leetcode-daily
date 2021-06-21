@@ -65,24 +65,5 @@ class Node {
         }
     }
 
-    class Solution3 {
-        public void flatten(TreeNode root) {
-            TreeNode curr = root;
-            while(curr != null) {
-                if(curr.left != null) {
-                    TreeNode node = curr.left;
-                    while(node.right != null) {
-                        node = node.right;
-                    }
-                    TreeNode leftMost = node;
-                    TreeNode right = curr.right;
-                    curr.right = curr.left;
-                    curr.left = null;
-                    leftMost.right = right;
-                }
-                curr = curr.right;
-            }
-            return;
-        }
-    }
+
 }
