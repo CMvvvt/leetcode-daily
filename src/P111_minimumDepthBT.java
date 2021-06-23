@@ -35,4 +35,17 @@ class Solution {
             return (root.left == null || root.right == null) ? left + right + 1: Math.min(left, right) + 1;
         }
     }
+
+    class Solution3 {
+        public int minDepth(TreeNode root) {
+            if(root == null) return 0;
+            if(root.left == null && root.right == null) return 1;
+            int m = minDepth(root.left);
+            int n = minDepth(root.right);
+            if(root.left == null || root.right == null) {
+                return m + n + 1;
+            }
+            return Math.min(m, n) + 1;
+        }
+    }
 }
