@@ -48,4 +48,34 @@ class Solution {
             return Math.min(m, n) + 1;
         }
     }
+
+    /**
+     * iteration BFS method
+     */
+    class Solution4 {
+        public int minDepth(TreeNode root) {
+            if(root == null) return 0;
+            if(root.left == null && root.right == null) return 1;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            int level = 0;
+            while(! queue.isEmpty()) {
+                int size = queue.size();
+                level++;
+                for(int i = 0; i < size; i++) {
+                    TreeNode node = queue.poll();
+                    if(node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if(node. right != null) {
+                        queue.offer(node.right);
+                    }
+                    if(node.left == null && node.right == null) {
+                        return level;
+                    }
+                }
+            }
+            return level;
+        }
+    }
 }
