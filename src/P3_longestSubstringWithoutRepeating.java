@@ -1,5 +1,5 @@
 public class P3_longestSubstringWithoutRepeating {
-    class Solution {
+    class Solution1 {
         public int lengthOfLongestSubstring(String s) {
             int len = s.length();
             if(len < 2) return len;
@@ -25,6 +25,35 @@ public class P3_longestSubstringWithoutRepeating {
                 set.add(s.charAt(i));
             }
             return false;
+        }
+    }
+
+    /**
+     * sliding window method added
+     *
+     */
+    class Solution2 {
+        public int lengthOfLongestSubstring(String s) {
+            char[] chars = new char[128];
+
+            int left = 0;
+            int right = 0;
+            int res = 0;
+
+            while(right < s.length()) {
+                char r = s.charAt(right);
+                chars[r]++;
+
+                while(chars[r] > 1) {
+                    char l = s.charAt(left);
+                    chars[l]--;
+                    left++;
+                }
+
+                res = Math.max(res, right - left + 1);
+                right++;
+            }
+            return res;
         }
     }
 }
