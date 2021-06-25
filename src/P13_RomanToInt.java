@@ -79,4 +79,38 @@ public class P13_RomanToInt {
         assertEquals(2349,romanToInt_mothod2(s));
 
     }
+
+    class Solution3 {
+        static Map<String, Integer> values = new HashMap<>();
+
+        static {
+            values.put("I", 1);
+            values.put("V", 5);
+            values.put("X", 10);
+            values.put("L", 50);
+            values.put("C", 100);
+            values.put("D", 500);
+            values.put("M", 1000);
+        }
+        public int romanToInt(String s) {
+            int sum = 0;
+            int i = 0;
+            while(i < s.length()) {
+                String symbol = s.substring(i, i+1);
+                int currValue = values.get(symbol);
+                int nextValue = 0;
+                if(i + 1< s.length()) {
+                    nextValue = values.get(s.substring(i + 1, i + 2));
+                }
+                if(currValue < nextValue) {
+                    sum += nextValue - currValue;
+                    i += 2;
+                } else {
+                    sum += currValue;
+                    i++;
+                }
+            }
+            return sum;
+        }
+    }
 }
