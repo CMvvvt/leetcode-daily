@@ -56,4 +56,23 @@ public class P3_longestSubstringWithoutRepeating {
             return res;
         }
     }
+
+    /**
+     * optimal sliding window method
+     *
+     */
+    class Solution3 {
+        public int lengthOfLongestSubstring(String s) {
+            int res = 0, len = s.length();
+            Map<Character, Integer> map = new HashMap<>();
+            for(int i = 0, j = 0; j < len; j++) {
+                if(map.containsKey(s.charAt(j))) {
+                    i = Math.max(map.get(s.charAt(j)) + 1, i);
+                }
+                map.put(s.charAt(j), j);
+                res = Math.max(res, j - i + 1);
+            }
+            return res;
+        }
+    }
 }
