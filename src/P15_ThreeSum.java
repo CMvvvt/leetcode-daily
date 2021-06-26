@@ -33,4 +33,36 @@ public class P15_ThreeSum {
         }
         return output_arr;
     }
+
+    /**
+     * two pointer method
+     */
+    class Solution2 {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            HashSet<List<Integer>> set = new HashSet<>();
+            Arrays.sort(nums);
+            for(int i = 0; i < nums.length - 2; i++) {
+                int left = i + 1, right = nums.length - 1;
+                int target = 0 - nums[i];
+                while(left < right) {
+                    if(nums[left] + nums[right] == target) {
+                        List<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[left++]);
+                        list.add(nums[right--]);
+                        set.add(list);
+                        continue;
+                    }
+                    if(nums[left] + nums[right] < target) {
+                        left++;
+                    } else {
+                        right--;
+                    }
+                }
+            }
+            res = new ArrayList<>(set);
+            return res;
+        }
+    }
 }
