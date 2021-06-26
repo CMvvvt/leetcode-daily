@@ -27,4 +27,19 @@ public class P28_strStr {
         assertEquals("hello".substring(2,4), "ll");
         //assertEquals(2,strStr("hello","ll"));
     }
+
+    class Solution2 {
+        public int strStr(String haystack, String needle) {
+            int m = haystack.length();
+            int n = needle.length();
+            if(n == 0) return 0;
+            if(m < n) return -1;
+            for(int i = 0; i < m - n + 1; i++) {
+                if(haystack.substring(i, i + n).equals(needle)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+    }
 }
