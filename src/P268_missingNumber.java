@@ -27,4 +27,18 @@ public class P268_missingNumber {
             return 0;
         }
     }
+
+    /**
+     * exclusive or method added
+     */
+    class Solution3 {
+        public int missingNumber(int[] nums) {
+            int n = nums.length;
+            int sum = 0;
+            for(int i = 0; i < n; i++) {
+                sum = sum ^ i ^ nums[i];
+            }
+            return sum ^ n;
+        }
+    }
 }
