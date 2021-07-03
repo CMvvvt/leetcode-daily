@@ -38,4 +38,24 @@ public class P929_uniqueEmailAddresses {
 
         }
     }
+
+    /**
+     * more clean approach added
+     */
+    class Solution2 {
+        public int numUniqueEmails(String[] emails) {
+            Set<String> set = new HashSet<>();
+            for(String email: emails) {
+                int i = email.indexOf("@");
+                String local = email.substring(0, i);
+                String remain = email.substring(i);
+                if(local.contains("+")) {
+                    local = local.substring(0, local.indexOf("+"));
+                }
+                local = local.replace(".", "");
+                set.add(local + remain);
+            }
+            return set.size();
+        }
+    }
 }
