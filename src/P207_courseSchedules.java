@@ -72,4 +72,48 @@ public class P207_courseSchedules {
             return visited == numCourses;
         }
     }
+
+
+    /**
+     * backtracking method
+     * time limited
+     */
+    class Solution3 {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            HashMap<Integer, List<Integer>> courseDict = new HashMap<>();
+
+            for(int[] relation: prerequisites) {
+                if(courseDict.containsKey(relation[1])) {
+                    courseDict.get(relation[1]).add(relation[0]);
+                } else {
+                    List<Integer> nextCourse = new LinkedList<>();
+                    nextCourse.add(relation[0]);
+                    courseDict.put(relation[1], nextCourse);
+                }
+            }
+
+            boolean[] path = new boolean[numCourses];
+
+            for(int currCourse = 0; currCourse < numCourses; currCourse++) {
+                if(isCycle(currCourse, courseDict, path)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private boolean isCycle(int currCourse, Map<Integer, List<Integer>> courseDict, boolean[] path) {
+            if(path[currCourse]) return true;
+            if(! courseDict.containsKey(currCourse)) return false;
+            path[currCourse] = true;
+            boolean res = false;
+            for(int nextCourse: courseDict.get(currCourse)) {
+                res = isCycle(nextCourse, courseDict, path);
+                if(res) break;
+            }
+            path[currCourse] = false;
+            return res;
+        }
+    }
 }
