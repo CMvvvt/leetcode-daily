@@ -25,4 +25,40 @@ public class P332_reconstructItinerary {
             itinerary.add(curr);
         }
     }
+
+
+    /**
+     * p332 added new approach
+     */
+    class Solution {
+        List<String> res = new ArrayList<>();
+        Map<String, PriorityQueue<String>> map = new HashMap<>();
+
+        public List<String> findItinerary(List<List<String>> tickets) {
+            buildMap(map, tickets);
+            dfs("JFK");
+            Collections.reverse(res);
+            return res;
+        }
+
+        private void dfs(String from) {
+            PriorityQueue<String> arrivals = map.get(from);
+            while(arrivals != null && !arrivals.isEmpty()) {
+                String to = arrivals.poll();
+                dfs(to);
+            }
+            res.add(from);
+        }
+
+        private void buildMap(Map<String, PriorityQueue<String>> map, List<List<String>> tickets) {
+            for(List<String> ticket: tickets) {
+                String from = ticket.get(0);
+                String to = ticket.get(1);
+                if(! map.containsKey(from)) {
+                    map.put(from, new PriorityQueue<>());
+                }
+                map.get(from).offer(to);
+            }
+        }
+    }
 }
