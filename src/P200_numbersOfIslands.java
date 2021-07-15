@@ -67,4 +67,36 @@ public class P200_numbersOfIslands {
             return count;
         }
     }
+
+    /**
+     * third time
+     */
+    class Solution3 {
+        public int numIslands(char[][] grid) {
+            int m = grid.length;
+            int n = grid[0].length;
+            int res = 0;
+            for(int i = 0; i < m; i++) {
+                for(int j = 0; j < n; j++) {
+                    if(grid[i][j] == '1') {
+                        dfs(grid, i, j);
+                        res++;
+                    }
+                }
+            }
+            return res;
+        }
+
+        private void dfs(char[][] grid, int m, int n) {
+            if(m >= grid.length || n >= grid[0].length || m < 0 || n < 0 || grid[m][n] == '0') {
+                return;
+            }
+            grid[m][n] = '0';
+            dfs(grid, m - 1, n);
+            dfs(grid, m + 1, n);
+            dfs(grid, m, n - 1);
+            dfs(grid, m, n + 1);
+            return;
+        }
+    }
 }
