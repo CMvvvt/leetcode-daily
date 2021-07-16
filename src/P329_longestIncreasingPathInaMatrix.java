@@ -34,4 +34,43 @@ public class P329_longestIncreasingPathInaMatrix {
             return;
         }
     }
+
+
+    /**
+     * optimal dfs added
+     */
+    class Solution {
+        int[][] flag;
+        int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        int row;
+        int col;
+        public int longestIncreasingPath(int[][] matrix) {
+            if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
+            row = matrix.length;
+            col = matrix[0].length;
+            flag = new int[row][col];
+            int ans = 0;
+            for(int i = 0; i < row; i++) {
+                for(int j = 0; j < col; j++) {
+                    ans = Math.max(ans, dfs(matrix, i, j));
+                }
+            }
+            return ans;
+        }
+
+        private int dfs(int[][] matrix, int i, int j) {
+            if(flag[i][j] != 0) {
+                return flag[i][j];
+            }
+            flag[i][j]++;
+            for(int[] dir: dirs) {
+                int newRow = i + dir[0];
+                int newCol = j + dir[1];
+                if(newCol >= 0 && newRow >= 0 && newRow < row && newCol < col && matrix[newRow][newCol] > matrix[i][j]) {
+                    flag[i][j] = Math.max(flag[i][j], dfs(matrix, newRow, newCol) + 1);
+                }
+            }
+            return flag[i][j];
+        }
+    }
 }
